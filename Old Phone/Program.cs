@@ -8,10 +8,10 @@ namespace Old_Phone
     /// <summary>
     /// This class provides a way to convert Numpad Keypresses into human readable text.
     /// </summary>
-    public class Old_Phone_Converter
+    public class OldPhoneConverter
     {
 
-        public Old_Phone_Converter() { }
+        public OldPhoneConverter() { }
 
         /// <summary>
         /// Provides a Dictionary that mimics an old phone number pad.
@@ -164,7 +164,7 @@ namespace Old_Phone
             
             //Console.WriteLine("Please input the number string input for decoding. (Only Numberals, Spaces and the # symbol are allowed)");
             //string input = Console.ReadLine();
-            //Console.WriteLine(Old_Phone_Converter.OldPhonePad(input));
+            //Console.WriteLine(OldPhoneConverter.OldPhonePad(input));
         }
     }
 }
