@@ -8,15 +8,17 @@ namespace Old_Phone
     /// <summary>
     /// This class provides a way to convert Numpad Keypresses into human readable text.
     /// </summary>
-    class Program
+    public class Old_Phone_Converter
     {
+
+        public Old_Phone_Converter() { }
 
         /// <summary>
         /// Provides a Dictionary that mimics an old phone number pad.
         /// </summary>
         /// <returns>Dictionary that mimics an old phone number pad.</returns>
         /// <remarks>Number pad is according to the image in the challenge description.</remarks>
-        public static IDictionary<char, char[]> GetNumPad()
+        private static IDictionary<char, char[]> GetNumPad()
         {
             IDictionary<char, char[]> numPad = new Dictionary<char, char[]>();
             numPad.Add('1', new char[] { '&', '\'', '('});
@@ -83,7 +85,7 @@ namespace Old_Phone
         /// <param name="prompt">Same-number string token. </param>
         /// <param name="numLimit">Limit of presses that a key can take before traversing all character options.</param>
         /// <returns>Alphabetical string.</returns>
-        public static string SetReferencedString(string prompt, int numLimit)
+        private static string SetReferencedString(string prompt, int numLimit)
         {
             IDictionary<char, char[]> numPad = GetNumPad();
             int remainingClicks = prompt.Length % numLimit;
@@ -110,7 +112,7 @@ namespace Old_Phone
         /// </summary>
         /// <param name="input">String of button presses.</param>
         /// <returns>List of token strings.</returns>
-        public static List<string> TokenizeString(string input)
+        private static List<string> TokenizeString(string input)
         {
             List<string> tokens = new List<string>();
             if (string.IsNullOrWhiteSpace(input))
@@ -146,17 +148,23 @@ namespace Old_Phone
         /// </summary>
         /// <param name="input">String of button presses</param>
         /// <returns>True if input is valid and False if not.</returns>
-        public static bool InputIsValid(string input) 
+        private static bool InputIsValid(string input) 
         {
             const string InputPattern = @"^[0-9# *]+$"; //Only allows for numbers spaces and the pound symbol (#)
             bool v = Regex.IsMatch(input, InputPattern, RegexOptions.IgnoreCase);
             return v;
         }
+        
+    }
+    class Program
+    {
+       
         static void Main(string[] args)
         {
-            Console.WriteLine("Please input the number string input for decoding. (Only Numberals, Spaces and the # symbol are allowed)");
-            string input = Console.ReadLine();
-            Console.WriteLine(OldPhonePad(input));
+            
+            //Console.WriteLine("Please input the number string input for decoding. (Only Numberals, Spaces and the # symbol are allowed)");
+            //string input = Console.ReadLine();
+            //Console.WriteLine(Old_Phone_Converter.OldPhonePad(input));
         }
     }
 }
