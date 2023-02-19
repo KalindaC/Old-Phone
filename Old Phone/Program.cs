@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace Old_Phone
 {   
@@ -42,12 +43,20 @@ namespace Old_Phone
         /// <exception>Throws invalid input error.</exception>
         public static string OldPhonePad(String input)
         {
-            if (!InputIsValid(input))
+            if (input.Length == 0)
             {
-                Console.Error.WriteLine("ERROR: INVALID INPUT! Only Numberals, Spaces and the # symbol are allowed");
-                return "Fix input and try again";
+                Exception emptyInputException = new ArgumentNullException("");
+                throw emptyInputException; //ends execution incase of bad input
 
             }
+            if (!InputIsValid(input))
+            {
+                Exception invalidInputException = new ArgumentException("INVALID INPUT! Only Numberals, Spaces and the # symbol are allowed");
+                throw invalidInputException; //ends execution incase of bad input
+
+            }
+             
+
             List<string> tokens = TokenizeString(input);
             
             StringBuilder decodedText = new StringBuilder();
@@ -55,8 +64,22 @@ namespace Old_Phone
             {
                 if (t[0] == '*')
                 {
-                    decodedText.Remove(decodedText.Length - t.Length, t.Length); // backspace
-                }else if (t[0]=='#')
+                    if (decodedText.Length == 0)
+                    {
+                        continue;
+                    }
+                    else if(decodedText.Length< t.Length)
+                    {
+                        decodedText.Remove(0, decodedText.Length); // backspace
+                    }
+                    else
+                    {
+                        decodedText.Remove(decodedText.Length - t.Length, t.Length); // backspace
+                    }
+
+
+                }
+                else if (t[0]=='#')
                 {
                     break; //pressed send
                 }
@@ -151,8 +174,8 @@ namespace Old_Phone
         private static bool InputIsValid(string input) 
         {
             const string InputPattern = @"^[0-9# *]+$"; //Only allows for numbers spaces and the pound symbol (#)
-            bool v = Regex.IsMatch(input, InputPattern, RegexOptions.IgnoreCase);
-            return v;
+            bool valid = Regex.IsMatch(input, InputPattern, RegexOptions.IgnoreCase);
+            return valid;
         }
         
     }
@@ -160,11 +183,15 @@ namespace Old_Phone
     {
        
         static void Main(string[] args)
-        {
-            
-            //Console.WriteLine("Please input the number string input for decoding. (Only Numberals, Spaces and the # symbol are allowed)");
-            //string input = Console.ReadLine();
-            //Console.WriteLine(OldPhoneConverter.OldPhonePad(input));
+        {           
+            Console.WriteLine("Please input the number string input for decoding. (Only Numberals, Spaces and the # symbol are allowed)");
+            string input = Console.ReadLine();
+            try {
+                Console.WriteLine(OldPhoneConverter.OldPhonePad(input));
+            } catch(Exception e)
+            {
+                Console.WriteLine(e);
+            }
         }
     }
 }
