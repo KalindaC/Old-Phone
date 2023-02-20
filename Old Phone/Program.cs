@@ -2,12 +2,11 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
-using Swashbuckle.AspNetCore.Swagger;
 
 namespace Old_Phone
 {   
     /// <summary>
-    /// This class provides a way to convert Numpad Keypresses into human readable text.
+    /// This class provides a method to convert Numpad Keypresses into human readable text.
     /// </summary>
     public class OldPhoneConverter
     {
@@ -45,7 +44,7 @@ namespace Old_Phone
         {
             if (input.Length == 0)
             {
-                Exception emptyInputException = new ArgumentNullException("");
+                Exception emptyInputException = new ArgumentNullException("EMPTY INPUT!");
                 throw emptyInputException; //ends execution incase of bad input
 
             }
@@ -184,14 +183,14 @@ namespace Old_Phone
        
         static void Main(string[] args)
         {           
-            Console.WriteLine("Please input the number string input for decoding. (Only Numberals, Spaces and the # symbol are allowed)");
+            /**Console.WriteLine("Please input the number string input for decoding. (Only Numberals, Spaces and the # symbol are allowed)");
             string input = Console.ReadLine();
             try {
                 Console.WriteLine(OldPhoneConverter.OldPhonePad(input));
             } catch(Exception e)
             {
                 Console.WriteLine(e);
-            }
+            }*/
         }
     }
 }

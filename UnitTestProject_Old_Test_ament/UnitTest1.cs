@@ -66,8 +66,8 @@ namespace UnitTestProject_Old_Test_ament
         [TestMethod]
         public void OldPhoneBackspaceOnEmptyInputTest()
         {
-            const string input = "555 55 ***** 4433555 555666#";
-            const string output = "HELLO";
+            const string input = "555 55 *****#";
+            const string output = "";
             string result = OldPhoneConverter.OldPhonePad(input);
             if (result == output)
             {
