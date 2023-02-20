@@ -1,7 +1,7 @@
 # Old-Phone
 ## Takes a string of button inputs and converts it to human readable text
 
-This implementation provides a static method, OldPhoneConverter.OldPhonePad(), which allows you to convert any sequence of numbers on an old phone keypad into the corresponding readable text
+This implementation provides a class OldPhoneConverter that provides the static method, OldPhoneConverter.OldPhonePad(), which allows you to convert any sequence of numbers on an old phone keypad into the corresponding readable text
 
 ## Structure
 * The class source code is available in ./Old Phone/Program.cs
